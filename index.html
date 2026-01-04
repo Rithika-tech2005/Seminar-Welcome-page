@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+        PHASE 1: METADATA & EXTERNAL RESOURCES
+        Defining the character set, responsive viewport, and importing modern fonts/frameworks.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Seminar | Tirukkoilur College of Arts and Science</title>
+    
+    <!-- Tailwind CSS for rapid, modern UI layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Orbitron (Tech font) and Inter (Clean body font) from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* PHASE 2: DESIGN SYSTEM (THEMING)
+            Setting up the color palette and core visual styles.
+        */
+        :root {
+            --primary: #00f2fe;    /* Electric Cyan */
+            --secondary: #4facfe;  /* Deep Sky Blue */
+            --accent: #f093fb;     /* Neon Pink */
+            --bg-dark: #020617;    /* Deep Space Black */
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+        /* PHASE 3: ADVANCED CSS ANIMATIONS
+            Custom animations for the "Eye-Catchy" effect.
+        */
+        
+        /* Shimmer effect for the College Title at the top */
+        .college-title {
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, #4facfe, #f093fb, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+            text-shadow: 0 0 30px rgba(79, 172, 254, 0.3);
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Glassmorphism: Modern "Frosted Glass" card effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 242, 254, 0.2);
+        }
+
+        /* Moving Gradient for the main titles */
+        .gradient-text {
+            background: linear-gradient(90deg, #00f2fe, #4facfe, #f093fb, #7e22ce);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: gradient-shift 5s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Background Particle Canvas positioning */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Initial state for elements before they scroll into view */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease-out;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Neon pulse for live indicators */
+        .neon-pulse {
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { text-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
+            to { text-shadow: 0 0 25px rgba(240, 147, 251, 0.8), 0 0 40px rgba(79, 172, 254, 0.4); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INTERACTIVE BACKGROUND: Neural Network Particle Simulation -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- 
+        PHASE 4: TOP BRANDING (College Name)
+        Highest priority element as requested.
+    -->
+    <header class="w-full pt-10 pb-6 text-center z-50 relative">
+        <h1 class="college-title font-orbitron text-2xl md:text-5xl font-black tracking-tighter px-4">
+            Tirukkoilur College of Arts and Science
+        </h1>
+        <div class="flex justify-center items-center gap-3 mt-4">
+            <div class="h-[1px] w-16 bg-blue-500/50"></div>
+            <p class="text-blue-400 font-bold tracking-[0.4em] text-xs md:text-sm uppercase">Department of BCA</p>
+            <div class="h-[1px] w-16 bg-blue-500/50"></div>
+        </div>
+    </header>
+
+    <!-- 
+        PHASE 5: NAVIGATION & LOGOS
+        Logos are provided via CDN placeholders so the code runs immediately.
+    -->
+    <nav class="sticky top-4 z-50 px-6 py-3 glass-card mx-4 mt-2 flex justify-between items-center border-blue-500/30">
+        <!-- College Logo Provision -->
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white rounded-full p-1 shadow-lg shadow-blue-500/20">
+                <img src="https://img.icons8.com/fluency/96/university.png" alt="College Logo" class="w-full h-full object-contain">
+            </div>
+            <span class="hidden lg:inline font-bold text-[10px] tracking-widest text-gray-400 uppercase">Est. 1999</span>
+        </div>
+
+        <!-- Seminar Title -->
+        <div class="font-orbitron text-lg md:text-2xl font-bold neon-pulse text-white">
+            AI SEMINAR <span class="text-blue-400">'24</span>
+        </div>
+
+        <!-- Department Logo Provision -->
+        <div class="flex items-center gap-3">
+            <span class="hidden lg:inline font-bold text-[10px] tracking-widest text-pink-400 uppercase">BCA Tech Club</span>
+            <div class="w-10 h-10 bg-white/10 rounded-full p-1 border border-white/20">
+                <img src="https://img.icons8.com/fluency/96/artificial-intelligence.png" alt="Dept Logo" class="w-full h-full object-contain">
+            </div>
+        </div>
+    </nav>
+
+    <!-- 
+        PHASE 6: HERO SECTION
+        Main welcome area with big bold typography.
+    -->
+    <main class="container mx-auto px-6 py-20 text-center relative">
+        <div class="mb-8 inline-block">
+            <span class="px-8 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold tracking-[0.3em] uppercase animate-pulse">
+                Innovate • Integrate • Intelligence
+            </span>
+        </div>
+        
+        <h1 class="text-5xl md:text-8xl font-black font-orbitron mb-10 leading-tight">
+            THE DAWN OF <br>
+            <span class="gradient-text">NEURAL POWER</span>
+        </h1>
+
+        <p class="text-gray-300 text-lg md:text-2xl max-w-4xl mx-auto mb-14 font-light leading-relaxed">
+            Welcome to the BCA Department's flagship event. Dive deep into the world of <span class="text-white font-bold underline decoration-pink-500">Machine Learning</span> and Artificial Intelligence.
+        </p>
+
+        <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
+            <button class="bg-gradient-to-r from-blue-600 to-blue-400 text-white font-black py-5 px-14 rounded-full text-xl shadow-2xl hover:scale-105 transition-all" onclick="document.getElementById('speakers').scrollIntoView({behavior:'smooth'})">
+                MEET THE EXPERTS
+            </button>
+            <div class="px-8 py-4 glass-card flex items-center gap-4 text-white border-blue-500/20">
+                <div class="w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+                <span class="font-bold tracking-widest uppercase text-xs">Main Auditorium</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- 
+        PHASE 7: SPEAKER BIOS
+        Showcasing the guest speakers with high-res photos.
+    -->
+    <section id="speakers" class="container mx-auto px-6 py-24">
+        <div class="text-center mb-20 scroll-reveal">
+            <h2 class="text-4xl md:text-6xl font-black font-orbitron gradient-text mb-4">GUEST SPEAKERS</h2>
+            <p class="text-blue-400 tracking-[0.5em] uppercase text-sm font-bold">Industry Visionaries</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Speaker 1 -->
+            <div class="glass-card p-10 scroll-reveal flex flex-col items-center text-center group">
+                <div class="w-48 h-48 mb-8 rounded-full overflow-hidden border-4 border-blue-400/30 group-hover:border-blue-400 transition-all duration-500">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" alt="Speaker 1" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                </div>
+                <h3 class="text-2xl font-bold font-orbitron text-white mb-2">Dr. Arun Kumar</h3>
+                <p class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-4">AI Research Head</p>
+                <p class="text-gray-400 text-sm italic">"Redefining human-computer interaction through advanced neural processing."</p>
+            </div>
+
+            <!-- Speaker 2 -->
+            <div class="glass-card p-10 scroll-reveal flex flex-col items-center text-center group" style="transition-delay: 200ms;">
+                <div class="w-48 h-48 mb-8 rounded-full overflow-hidden border-4 border-pink-400/30 group-hover:border-pink-400 transition-all duration-500">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Speaker 2" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                </div>
+                <h3 class="text-2xl font-bold font-orbitron text-white mb-2">Ms. Priya Sharma</h3>
+                <p class="text-pink-400 font-bold text-xs uppercase tracking-widest mb-4">Senior Data Analyst</p>
+                <p class="text-gray-400 text-sm italic">"The power of big data in training sustainable AI models for tomorrow."</p>
+            </div>
+
+            <!-- Speaker 3 -->
+            <div class="glass-card p-10 scroll-reveal flex flex-col items-center text-center group" style="transition-delay: 400ms;">
+                <div class="w-48 h-48 mb-8 rounded-full overflow-hidden border-4 border-purple-400/30 group-hover:border-purple-400 transition-all duration-500">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400" alt="Speaker 3" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                </div>
+                <h3 class="text-2xl font-bold font-orbitron text-white mb-2">Mr. Rajesh V</h3>
+                <p class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-4">Cloud Solutions Architect</p>
+                <p class="text-gray-400 text-sm italic">"Scaling intelligence across global infrastructures using AWS and Azure."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+        PHASE 8: HIGHLIGHTS & STATS
+        Engaging numbers to impress the visitors.
+    -->
+    <section class="container mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-card p-12 text-center border-t-4 border-t-blue-500 scroll-reveal">
+            <h4 class="text-5xl font-black font-orbitron mb-2">15+</h4>
+            <p class="text-blue-400 font-bold uppercase tracking-[0.3em] text-[10px]">Workshops</p>
+        </div>
+        <div class="glass-card p-12 text-center border-t-4 border-t-pink-500 scroll-reveal" style="transition-delay: 200ms;">
+            <h4 class="text-5xl font-black font-orbitron mb-2">1000</h4>
+            <p class="text-pink-400 font-bold uppercase tracking-[0.3em] text-[10px]">Expected Attendees</p>
+        </div>
+        <div class="glass-card p-12 text-center border-t-4 border-t-purple-500 scroll-reveal" style="transition-delay: 400ms;">
+            <h4 class="text-5xl font-black font-orbitron mb-2">LIVE</h4>
+            <p class="text-purple-400 font-bold uppercase tracking-[0.3em] text-[10px]">AI Demonstrations</p>
+        </div>
+    </section>
+
+    <!-- 
+        PHASE 9: EVENT COUNTDOWN
+        Visual urgency for the seminar.
+    -->
+    <section class="container mx-auto px-6 py-24">
+        <div class="glass-card p-16 text-center bg-gradient-to-b from-blue-900/10 to-transparent scroll-reveal">
+            <h2 class="text-2xl font-orbitron mb-12 text-gray-400 tracking-[0.5em] uppercase">The Future Arrives In</h2>
+            <div id="countdown" class="flex justify-center flex-wrap gap-10 md:gap-20">
+                <div class="text-center">
+                    <div class="text-5xl md:text-8xl font-black font-orbitron gradient-text" id="days">00</div>
+                    <p class="text-[10px] font-bold uppercase tracking-widest mt-4 text-gray-600">Days</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl md:text-8xl font-black font-orbitron text-white" id="hours">00</div>
+                    <p class="text-[10px] font-bold uppercase tracking-widest mt-4 text-gray-600">Hours</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl md:text-8xl font-black font-orbitron text-white" id="minutes">00</div>
+                    <p class="text-[10px] font-bold uppercase tracking-widest mt-4 text-gray-600">Minutes</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl md:text-8xl font-black font-orbitron text-pink-500" id="seconds">00</div>
+                    <p class="text-[10px] font-bold uppercase tracking-widest mt-4 text-gray-600">Seconds</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+        PHASE 10: FOOTER
+        Final branding and copyright info.
+    -->
+    <footer class="mt-20 py-16 border-t border-white/5 bg-black">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-orbitron text-2xl font-black mb-4 tracking-tighter">TCAS <span class="text-blue-500">BCA</span> 2024</h2>
+            <p class="text-gray-500 max-w-lg mx-auto mb-10 text-sm">Empowering students with the technology of tomorrow. Join the revolution at Tirukkoilur College of Arts and Science.</p>
+            <div class="flex justify-center gap-10 mb-10 text-xs font-bold uppercase tracking-widest text-gray-400">
+                <a href="#" class="hover:text-blue-400 transition-all">College Site</a>
+                <a href="#" class="hover:text-pink-400 transition-all">Department</a>
+                <a href="#" class="hover:text-purple-400 transition-all">Alumni</a>
+            </div>
+            <p class="text-gray-800 text-[10px] tracking-[0.8em] uppercase">&copy; 2024 BCA Dept. Developed for TCAS.</p>
+        </div>
+    </footer>
+
+    <!-- 
+        PHASE 11: INTERACTIVE LOGIC (JavaScript)
+        The engine that drives the animations and background.
+    -->
+    <script>
+        /**
+         * SCRIPT 1: NEURAL WEB (Background Particles)
+         * Creates moving dots that connect with lines based on distance.
+         */
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let points = [];
+        const maxPoints = 90;
+        const connectionDistance = 200;
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            points = [];
+            for (let i = 0; i < maxPoints; i++) {
+                points.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    color: Math.random() > 0.5 ? '#00f2fe' : '#f093fb'
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            points.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Screen bounce logic
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = 0.4;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Connecting lines between neighbors
+                for (let j = i + 1; j < points.length; j++) {
+                    const p2 = points[j];
+                    const dist = Math.sqrt((p.x - p2.x)**2 + (p.y - p2.y)**2);
+                    if (dist < connectionDistance) {
+                        ctx.strokeStyle = p.color;
+                        ctx.globalAlpha = (1 - dist / connectionDistance) * 0.2;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        draw();
+
+        /**
+         * SCRIPT 2: SCROLL REVEAL (Intersection Observer)
+         * Makes sections fade in as you scroll down.
+         */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        /**
+         * SCRIPT 3: COUNTDOWN TIMER
+         * Logic for the live event ticker.
+         */
+        function updateTimer() {
+            const now = new Date();
+            // Set for 12 days from current moment
+            const eventDate = new Date(now.getTime() + (12 * 24 * 60 * 60 * 1000));
+            const diff = eventDate - now;
+            
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        /**
+         * SCRIPT 4: MOUSE INTERACTION
+         * Temporary point follows the mouse to interact with the neural web.
+         */
+        window.addEventListener('mousemove', (e) => {
+            if(points.length > maxPoints) points.shift();
+            points.push({
+                x: e.clientX,
+                y: e.clientY,
+                vx: 0,
+                vy: 0,
+                color: '#fff',
+                isMouse: true
+            });
+        });
+    </script>
+</body>
+</html>
+
