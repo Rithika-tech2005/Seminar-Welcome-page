@@ -383,20 +383,31 @@
 
         document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 
-        /**
-         * SCRIPT 3: COUNTDOWN TIMER
-         * Logic for the live event ticker.
-         */
+ // 3. TARGETED TIMER: JANUARY 22, 2026
         function updateTimer() {
             const now = new Date();
-            // Set for 12 days from current moment
-            const eventDate = new Date(now.getTime() + (12 * 24 * 60 * 60 * 1000));
+            // HARDCODED DATE FOR THE EVENT
+            const eventDate = new Date("January 22, 2026 09:30:00"); 
             const diff = eventDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('timer-label').innerText = "THE SEMINAR IS LIVE!";
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
             
-            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / 1000 / 60) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
         }
 
         setInterval(updateTimer, 1000);
