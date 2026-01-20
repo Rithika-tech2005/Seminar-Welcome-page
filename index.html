@@ -359,16 +359,7 @@
 <!-- JS for auto slider & modals -->
 <script>
   // AUTO SLIDER
-  const slider = document.getElementById('facultySlider');
-  let scrollAmount = 0;
-  setInterval(() => {
-    if(scrollAmount + slider.clientWidth >= slider.scrollWidth){
-      scrollAmount = 0;
-    } else {
-      scrollAmount += slider.clientWidth; 
-    }
-    slider.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-  }, 10000);
+  
 
   // MODALS
   function openModal(id){ document.getElementById(id).style.display="flex"; }
